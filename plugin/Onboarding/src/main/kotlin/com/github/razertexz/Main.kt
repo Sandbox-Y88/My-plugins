@@ -44,7 +44,9 @@ private class OnboardingPromptOption(
 @AliucordPlugin(requiresRestart = false)
 class Main : Plugin() {
     override fun start(ctx: Context) {
-        StoreStream.getGuildSelected().observeSelectedGuildId().subscribe(guildId -> {
+        StoreStream.getGuildSelected().observeSelectedGuildId().subscribe {
+            val guildId = this
+
             Utils.threadPool.execute {
                 val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$guildId/onboarding", "GET").execute()
                 val onboarding = response.json(Onboarding::class.java)
@@ -52,7 +54,7 @@ class Main : Plugin() {
                 if (onboarding.enabled)
                     logger.warn(onboarding.toString())
             }
-        })
+        }
     }
 
     override fun stop(ctx: Context) = patcher.unpatchAll()
