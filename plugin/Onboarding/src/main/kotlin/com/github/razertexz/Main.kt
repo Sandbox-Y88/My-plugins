@@ -6,6 +6,7 @@ import android.view.View
 import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
 import com.aliucord.patcher.*
+import com.aliucord.Utils
 import com.aliucord.Http
 
 import com.discord.widgets.channels.list.items.ChannelListItemInvite
@@ -29,7 +30,7 @@ class Main : Plugin() {
 
                 if (response.ok()) {
                     val onboarding = response.json(Onboarding::class.java)
-                    logger.warn(onboarding)
+                    logger.warn(onboarding.toString())
                 }
             }
 
