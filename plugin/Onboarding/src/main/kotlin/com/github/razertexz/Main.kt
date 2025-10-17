@@ -1,7 +1,6 @@
 package com.github.razertexz
 
 import android.content.Context
-import android.view.View
 
 import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
