@@ -12,11 +12,11 @@ import com.discord.widgets.channels.list.items.ChannelListItemInvite
 import com.discord.widgets.channels.list.`WidgetChannelsListAdapter$ItemInvite$onConfigure$1`
 
 private data class Onboarding(
-    guild_id: Long,
-    prompts: List<Any>,
-    default_channel_ids: List<Long>,
-    enabled: Boolean,
-    mode: Any
+    val guild_id: Long,
+    val prompts: List<Any>,
+    val default_channel_ids: List<Long>,
+    val enabled: Boolean,
+    val mode: Any
 )
 
 @AliucordPlugin(requiresRestart = false)
