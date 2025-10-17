@@ -22,11 +22,13 @@ private data class Onboarding(
 @AliucordPlugin(requiresRestart = false)
 class Main : Plugin() {
     override fun start(ctx: Context) {
-        StoreStream.getGuildSelected().observeSelectedGuildId().subscribe { guildId ->
+        StoreStream.getGuildSelected().observeSelectedGuildId().subscribe {
+            val guildId = this
+
             Utils.threadPool.execute {
                 val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$guildId/onboarding", "GET").execute()
                 val onboarding = response.json(Onboarding::class.java)
-                logger.warn(onboarding)
+                logger.warn(onboarding.toString())
             }
         }
     }
