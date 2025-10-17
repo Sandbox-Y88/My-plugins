@@ -38,6 +38,7 @@ private class Onboarding(
             val title: String,
             val description: String?
         )
+    }
 }
 
 @AliucordPlugin(requiresRestart = true)
