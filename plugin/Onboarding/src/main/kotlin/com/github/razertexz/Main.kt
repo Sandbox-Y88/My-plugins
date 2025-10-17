@@ -5,8 +5,8 @@ import android.content.Context
 import com.aliucord.annotations.AliucordPlugin
 import com.aliucord.entities.Plugin
 import com.aliucord.patcher.*
-import com.aliucord.Utils
 import com.aliucord.Http
+import com.aliucord.Utils
 import com.aliucord.utils.RxUtils.subscribe
 
 import com.discord.stores.StoreStream
