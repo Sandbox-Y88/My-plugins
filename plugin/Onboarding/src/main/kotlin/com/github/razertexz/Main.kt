@@ -35,7 +35,7 @@ private class OnboardingPromptOption(
     val role_ids: List<Long>,
     val emoji: Any?,
     val emoji_id: Long?,
-    val emoji_name: String?
+    val emoji_name: String?,
     val emoji_animated: Boolean?,
     val title: String,
     val description: String?
