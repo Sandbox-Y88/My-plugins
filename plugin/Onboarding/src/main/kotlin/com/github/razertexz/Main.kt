@@ -12,31 +12,31 @@ import com.aliucord.utils.RxUtils.subscribe
 import com.discord.stores.StoreStream
 
 private class Onboarding(
-    val guild_id: Long,
-    val prompts: List<OnboardingPrompt>,
-    val default_channel_ids: List<Long>,
-    val enabled: Boolean,
-    val mode: Int
+    @JvmField val guild_id: Long,
+    @JvmField val prompts: List<OnboardingPrompt>,
+    @JvmField val default_channel_ids: List<Long>,
+    @JvmField val enabled: Boolean,
+    @JvmField val mode: Int
 ) {
-    data class OnboardingPrompt(
-        val id: Long,
-        val type: Int,
-        val options: List<OnboardingPromptOption>,
-        val title: String,
-        val single_select: Boolean,
-        val required: Boolean,
-        val in_onboarding: Boolean
+    class OnboardingPrompt(
+        @JvmField val id: Long,
+        @JvmField val type: Int,
+        @JvmField val options: List<OnboardingPromptOption>,
+        @JvmField val title: String,
+        @JvmField val single_select: Boolean,
+        @JvmField val required: Boolean,
+        @JvmField val in_onboarding: Boolean
     ) {
-        data class OnboardingPromptOption(
-            val id: Long,
-            val channel_ids: List<Long>,
-            val role_ids: List<Long>,
-            val emoji: Any?,
-            val emoji_id: Long?,
-            val emoji_name: String?,
-            val emoji_animated: Boolean?,
-            val title: String,
-            val description: String?
+        class OnboardingPromptOption(
+            @JvmField val id: Long,
+            @JvmField val channel_ids: List<Long>,
+            @JvmField val role_ids: List<Long>,
+            @JvmField val emoji: Any?,
+            @JvmField val emoji_id: Long?,
+            @JvmField val emoji_name: String?,
+            @JvmField val emoji_animated: Boolean?,
+            @JvmField val title: String,
+            @JvmField val description: String?
         )
     }
 }
@@ -49,11 +49,7 @@ class Main : Plugin() {
                 val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$this/onboarding", "GET").execute()
 
                 try {
-                    response.json(Onboarding::class.java).run {
-                        if (enabled) {
-                            prompts.forEach { logger.warn("$it") }
-                        }
-                    }
+                    val onboarding = response.json(Onboarding::class.java)
                 } finally {
                     response.close()
                 }
