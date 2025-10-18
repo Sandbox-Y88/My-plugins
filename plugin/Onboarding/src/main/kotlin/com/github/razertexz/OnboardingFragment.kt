@@ -1,16 +1,18 @@
 package com.github.razertexz
 
-import android.view.View
-import android.graphics.Color
-
-import com.aliucord.Main
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.FrameLayout
 
 import com.discord.app.AppFragment
 
 class OnboardingFragment() : AppFragment() {
-    override fun onViewBound(view: View) {
-        super.onViewBound(view)
-        view.setBackgroundColor(Color.BLACK)
-        Main.logger.info("${view.javaClass.name}")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val root = FrameLayout(getContext()).apply {
+            layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
+        }
+
+        return root
     }
 }
