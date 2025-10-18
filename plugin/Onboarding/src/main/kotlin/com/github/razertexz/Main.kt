@@ -26,7 +26,7 @@ private class Onboarding(
         val single_select: Boolean,
         val required: Boolean,
         val in_onboarding: Boolean
-     ) {
+    ) {
         private data class OnboardingPromptOption(
             val id: Long,
             val channel_ids: List<Long>,
@@ -52,8 +52,10 @@ class Main : Plugin() {
                 val onboarding = response.json(Onboarding::class.java)
 
                 if (onboarding.enabled) {
-                    logger.warn(onboarding.prompts.toString())
-                    logger.warn(onboarding.prompts.options.toString())
+                    onboarding.prompts.forEach { prompts ->
+                        logger.warn(prompts.toString())
+                        logger.warn(prompts.options.toString())
+                    }
                 }
             }
         }
