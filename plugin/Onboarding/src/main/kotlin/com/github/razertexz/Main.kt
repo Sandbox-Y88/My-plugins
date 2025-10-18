@@ -57,7 +57,7 @@ class Main : Plugin() {
             }
         }*/
 
-        Utils.openPageWithProxy(Utils.appActivity, OnboardingFragment())
+        Utils.mainThread.postDelayed({ Utils.openPageWithProxy(Utils.appContext, OnboardingFragment()) }, 5000L)
     }
 
     override fun stop(ctx: Context) = patcher.unpatchAll()
