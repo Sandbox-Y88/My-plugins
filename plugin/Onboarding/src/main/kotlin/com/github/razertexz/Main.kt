@@ -45,21 +45,13 @@ private class Onboarding(
 class Main : Plugin() {
     override fun start(ctx: Context) {
         StoreStream.getGuildSelected().observeSelectedGuildId().subscribe {
-            val guildId = this
-
             Utils.threadPool.execute {
-                logger.info("$this")
-                val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$guildId/onboarding", "GET").execute()
+                val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$this/onboarding", "GET").execute()
 
                 try {
-                    val onboarding = response.json(Onboarding::class.java)
-                    if (onboarding.enabled) {
-                        onboarding.prompts.forEach { prompts ->
-                            logger.warn(prompts.toString())
-
-                            prompts.options.forEach { options ->
-                                logger.warn(options.toString())
-                            }
+                    response.json(Onboarding::class.java).run {
+                        if (enabled) {
+                            prompts.forEach { logger.warn("$it") }
                         }
                     }
                 } finally {
