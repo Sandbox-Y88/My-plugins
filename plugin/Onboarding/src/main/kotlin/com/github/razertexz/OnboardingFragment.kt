@@ -6,7 +6,7 @@ import com.aliucord.Utils
 
 import com.discord.app.AppFragment
 
-class OnboardingFragment(private val logger) : AppFragment() {
+class OnboardingFragment() : AppFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
 
