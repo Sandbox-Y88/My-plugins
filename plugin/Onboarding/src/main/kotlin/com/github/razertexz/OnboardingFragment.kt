@@ -9,6 +9,6 @@ import com.discord.app.AppFragment
 class OnboardingFragment() : AppFragment() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        Main.logger.info("${view.javaClass.name}"
+        Main.logger.info("${view.javaClass.name}")
     }
-                         }
+}
