@@ -48,14 +48,22 @@ class Main : Plugin() {
             val guildId = this
 
             Utils.threadPool.execute {
+                logger.info("$this")
                 val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$guildId/onboarding", "GET").execute()
-                val onboarding = response.json(Onboarding::class.java)
 
-                if (onboarding.enabled) {
-                    onboarding.prompts.forEach { prompts ->
-                        logger.warn(prompts.toString())
-                        logger.warn(prompts.options.toString())
+                try {
+                    val onboarding = response.json(Onboarding::class.java)
+                    if (onboarding.enabled) {
+                        onboarding.prompts.forEach { prompts ->
+                            logger.warn(prompts.toString())
+
+                            prompts.options.forEach { options ->
+                                logger.warn(options.toString())
+                            }
+                        }
                     }
+                } finally {
+                    response.close()
                 }
             }
         }
