@@ -18,7 +18,7 @@ private class Onboarding(
     val enabled: Boolean,
     val mode: Int
 ) {
-    private data class OnboardingPrompt(
+    data class OnboardingPrompt(
         val id: Long,
         val type: Int,
         val options: List<OnboardingPromptOption>,
@@ -27,7 +27,7 @@ private class Onboarding(
         val required: Boolean,
         val in_onboarding: Boolean
     ) {
-        private data class OnboardingPromptOption(
+        data class OnboardingPromptOption(
             val id: Long,
             val channel_ids: List<Long>,
             val role_ids: List<Long>,
