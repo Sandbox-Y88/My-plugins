@@ -44,17 +44,20 @@ private class Onboarding(
 @AliucordPlugin(requiresRestart = true)
 class Main : Plugin() {
     override fun start(ctx: Context) {
-        StoreStream.getGuildSelected().observeSelectedGuildId().subscribe {
+        /*StoreStream.getGuildSelected().observeSelectedGuildId().subscribe {
             Utils.threadPool.execute {
                 val response = Http.Request.newDiscordRNRequest("https://discord.com/api/v9/guilds/$this/onboarding", "GET").execute()
 
                 try {
                     val onboarding = response.json(Onboarding::class.java)
+                    Utils.openPageWithProxy(Utils.appActivity, OnboardingFragment())
                 } finally {
                     response.close()
                 }
             }
-        }
+        }*/
+
+        Utils.openPageWithProxy(Utils.appActivity, OnboardingFragment())
     }
 
     override fun stop(ctx: Context) = patcher.unpatchAll()
